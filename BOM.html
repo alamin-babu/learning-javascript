@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOM Demonstration</title>
+  <style>
+    .styled-text {
+      color: green;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Browser Object Model (BOM)</h1> <hr>
+
+  <!-- Window Size -->
+  <h3>Window Size</h3>
+  <p id="windowSize">Click below to get the window size.</p>
+  <button onclick="showWindowSize()">Get Window Size</button>
+  <hr>
+
+  <!-- Screen Info -->
+  <h3>Screen Info</h3>
+  <p id="screenInfo">Click below to get screen dimensions.</p>
+  <button onclick="showScreenInfo()">Get Screen Info</button>
+  <hr>
+
+  <!-- Location -->
+  <h3>Location Info</h3>
+  <p id="locationInfo">Click below to get the current URL.</p>
+  <button onclick="showLocationInfo()">Get Location Info</button>
+  <hr>
+
+  <!-- History -->
+  <h3>Browser History</h3>
+  <button onclick="goBack()">Go Back</button>
+  <button onclick="goForward()">Go Forward</button>
+  <hr>
+
+  <!-- Navigator -->
+  <h3>Navigator Info</h3>
+  <p id="navigatorInfo">Click below to get browser details.</p>
+  <button onclick="showNavigatorInfo()">Get Navigator Info</button>
+  <hr>
+
+  <!-- Popups -->
+  <h3>Popup Alerts</h3>
+  <button onclick="showAlert()">Show Alert</button>
+  <button onclick="showConfirm()">Show Confirm</button>
+  <button onclick="showPrompt()">Show Prompt</button>
+  <hr>
+
+  <!-- Timing -->
+  <h3>Timing Functions</h3>
+  <button onclick="startTimer()">Start Timer (5 seconds)</button>
+  <p id="timerResult">Timer result will appear here.</p>
+  <hr>
+
+  <!-- Cookies -->
+  <h3>Cookies</h3>
+  <button onclick="setCookie()">Set Cookie</button>
+  <button onclick="getCookie()">Get Cookie</button>
+  <p id="cookieInfo"></p>
+  <hr>
+
+  <script>
+    // Show the window's width and height
+    function showWindowSize() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      document.getElementById("windowSize").innerHTML = `Width: ${width}px, Height: ${height}px`;
+    }
+
+    // Show the screen's width and height
+    function showScreenInfo() {
+      const width = screen.width;
+      const height = screen.height;
+      document.getElementById("screenInfo").innerHTML = `Screen Width: ${width}px, Screen Height: ${height}px`;
+    }
+
+    // Show the current URL of the page
+    function showLocationInfo() {
+      const url = location.href;
+      document.getElementById("locationInfo").innerHTML = `Current URL: ${url}`;
+    }
+
+    // Go back in browser history
+    function goBack() {
+      window.history.back();
+    }
+
+    // Go forward in browser history
+    function goForward() {
+      window.history.forward();
+    }
+
+    // Show browser details
+    function showNavigatorInfo() {
+      const info = `
+        Browser: ${navigator.appName}<br>
+        Version: ${navigator.appVersion}<br>
+        Platform: ${navigator.platform}<br>
+        User-Agent: ${navigator.userAgent}
+      `;
+      document.getElementById("navigatorInfo").innerHTML = info;
+    }
+
+    // Show an alert popup
+    function showAlert() {
+      alert("This is an alert box!");
+    }
+
+    // Show a confirmation dialog
+    function showConfirm() {
+      const result = confirm("Do you want to proceed?");
+      alert("Confirmation result: " + result);
+    }
+
+    // Show a prompt dialog and handle the input
+    function showPrompt() {
+      const userInput = prompt("Please enter your name:");
+      if (userInput !== null) {
+        alert("Hello, " + userInput + "!");
+      }
+    }
+
+    // Start a timer that shows a message after 5 seconds
+    function startTimer() {
+      setTimeout(function() {
+        document.getElementById("timerResult").innerHTML = "5 seconds have passed! ⌚";
+      }, 5000);
+    }
+
+    // Set a cookie with a name and value
+    function setCookie() {
+      document.cookie = "username=Alamin; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+      document.getElementById("cookieInfo").innerHTML = "Cookie 'username' set.";
+    }
+
+    // Get the cookie value
+    function getCookie() {
+      const name = "username=";
+      const decodedCookie = decodeURIComponent(document.cookie);
+      const cookieArr = decodedCookie.split(';');
+      let cookieValue = "";
+      for (let i = 0; i < cookieArr.length; i++) {
+        let cookie = cookieArr[i];
+        while (cookie.charAt(0) === ' ') {
+          cookie = cookie.substring(1);
+        }
+        if (cookie.indexOf(name) === 0) {
+          cookieValue = cookie.substring(name.length, cookie.length);
+        }
+      }
+      document.getElementById("cookieInfo").innerHTML = cookieValue ? `Cookie value: ${cookieValue}` : "Cookie 'username' not found.";
+    }
+  </script>
+</body>
+</html>

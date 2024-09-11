@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Javascript!</title>
+</head>
+<body>
+    
+    <h1>Checking Javascript Output Methods</h1>
+    <hr>
+
+    <h4>innerHTML:</h4>
+    <p><strong>'innerHTML'</strong> inserts a value inside an element, and can be used to update the content dynamically. Here, the result of 5+6 will be inserted into the 'h1' element below:</p>
+    <h1 id="checking"></h1> 
+    <hr>
+
+    <h4>document.write():</h4>
+    <p><strong>'document.write()'</strong> is mostly used for testing purposes and outputs directly to the document. Be cautious, though, because if used after the document has loaded, it will overwrite the entire page content. Click the button below to see the result of 5+6, and it will replace the page content:</p>
+    <p id="write"></p> <br>
+    <button onclick="document.write(5+6)">Execute document.write()</button>
+    <hr>
+
+    <h4>alert():</h4>
+    <p><strong>'alert()'</strong> is used to display a message box to the user. It pauses code execution until the user acknowledges the alert. Press the button below to trigger an alert message:</p>
+    <button onclick=" window.alert('Hello! I can alert the user!')">Alert button</button>
+    <hr>
+
+    <h4>console.log():</h4>
+    <p><strong>'console.log()'</strong> outputs a message to the web browser's console, which is useful for debugging. The message won’t be visible on the web page, but it can be viewed in the console (press F12 or right-click and select "Inspect" -> "Console"). Click the button to log a message:</p>
+    <button onclick="console.log('I can log in the console')">Log to Console</button>
+
+    <script>
+        // innerHTML - Updates the content of an element
+        document.getElementById('checking').innerHTML = 5 + 6;
+
+        // document.write() - Writes directly to the HTML document
+        // It's commonly used for testing purposes
+
+        // alert() - Displays an alert box with a message
+        // window.alert('Hello!');
+
+        // console.log() - Logs a message to the browser's console
+        // console.log("Logging this message to the console");
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn JavaScript Statements!</title>
+</head>
+<body>
+
+    <h1>Understanding JavaScript Statements</h1>
+    <hr>
+
+    <h4>What are JavaScript Statements?</h4>
+    <p>JavaScript statements are instructions that are executed by the browser. They're written line by line, and each usually ends with a semicolon.</p>
+    <hr>
+
+    <h4>Statement Examples:</h4>
+    <p>Here are some common JavaScript statements that you can try out:</p>
+
+    <h4>1. Variable Declaration and Assignment:</h4>
+    <p>Declare a variable and assign a value:</p>
+    <pre><code>let x = 10;</code></pre>
+    <button onclick="declareVariable()">Show Variable Value</button>
+    <p id="variable-output"></p>
+
+    <h4>2. Expression Statement:</h4>
+    <p>An expression is evaluated and produces a value. For example:</p>
+    <pre><code>let sum = 5 + 3;</code></pre>
+    <button onclick="calculateSum()">Calculate Sum</button>
+    <p id="expression-output"></p>
+
+    <h4>3. Semicolons:</h4>
+    <p>Semicolons are used to separate statements. Even though JavaScript doesn't always require them, it's a good practice to use them:</p>
+    <pre><code>let y = 15; let z = 20;</code></pre>
+    <button onclick="showSemicolonExample()">Check Semicolon Usage</button>
+    <p id="semicolon-output"></p>
+
+    <script>
+        // Function to declare and display variable
+        function declareVariable() {
+            let x = 10; // Declaration and assignment
+            document.getElementById('variable-output').innerHTML = "The value of x is: " + x;
+        }
+
+        // Function to calculate and display the result of an expression
+        function calculateSum() {
+            let sum = 5 + 3; // Expression statement
+            document.getElementById('expression-output').innerHTML = "The sum of 5 + 3 is: " + sum;
+        }
+
+        // Function to demonstrate semicolon usage
+        function showSemicolonExample() {
+            let y = 15; // Semicolon at the end
+            let z = 20; // Another statement with a semicolon
+            document.getElementById('semicolon-output').innerHTML = "The values are: y = " + y + " and z = " + z;
+        }
+    </script>
+
+</body>
+</html>

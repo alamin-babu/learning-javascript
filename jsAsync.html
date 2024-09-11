@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asynchronous JavaScript</title>
+</head>
+<body>
+    <h1>Asynchronous JavaScript Concepts</h1>
+    <hr>
+
+    <h4>Function Sequence (Callback)</h4>
+    <p id="sequence"></p>
+    <hr>
+
+    <h4>Using setTimeout (Asynchronous Execution)</h4>
+    <p id="timeoutExample">It will be change after 5 sec</p>
+    <hr>
+
+    <h4>Callback Example</h4>
+    <p id="callbackExample"></p>
+    <hr>
+
+    <h4>Promises</h4>
+    <p id="promiseExample"></p>
+    <hr>
+
+    <h4>Async/Await</h4>
+    <p id="asyncAwaitExample">Wait fetching data ...</p>
+    <hr>
+
+    <script>
+        // Function Sequence (Callback)
+        // Functions are executed in the order they are called, not defined.
+        function myFirst() {
+            return "Welcome Again";
+        }
+        function mySecond() {
+            return "Goodbye";
+        }
+        let sequenceText =mySecond()+" and "+ myFirst()
+        document.getElementById("sequence").innerHTML = sequenceText;
+
+        // Asynchronous Execution with setTimeout
+        // setTimeout is used to delay execution and demonstrates asynchronous behavior.
+        setTimeout(function() {
+            document.getElementById("timeoutExample").innerHTML = "This is shown after 5 seconds. 🤞";
+        }, 5000);
+
+        // Callback Example
+        // A callback is a function passed as an argument to another function.
+        function myDisplayer(some) {
+            document.getElementById("callbackExample").innerHTML ="The sum of 5+5: "+ some;
+        }
+
+        function myCalculator(num1, num2, callback) {
+            let sum = num1 + num2;
+            callback(sum);
+        }
+
+        // Call myCalculator with a callback function (myDisplayer)
+        myCalculator(5, 5, myDisplayer);
+
+        // Promises
+        // A promise represents the eventual completion (or failure) of an asynchronous operation.
+        let myPromise = new Promise(function(myResolve, myReject) {
+            let x = 0; 
+            if (x == 0) {
+                myResolve("Promise Resolved! 😒");
+            } else {
+                myReject("Promise Rejected!");
+            }
+        });
+
+        myPromise.then(
+            function(value) { document.getElementById("promiseExample").innerHTML = value; },
+            function(error) { document.getElementById("promiseExample").innerHTML = error; }
+        );
+
+        // Async Await
+        // Async Await simplifies promises and makes the code look synchronous.
+        async function fetchData() {
+            let promise = new Promise(function(resolve) {
+                setTimeout(function() {
+                    resolve("Data fetched after 3 seconds (using async/await).");
+                }, 3000);
+            });
+            let result = await promise;
+            document.getElementById("asyncAwaitExample").innerHTML = result;
+        }
+
+        // Calling the async function
+        fetchData();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Web APIs Demonstration</title>
+  
+</head>
+<body>
+  <h1>JavaScript Web APIs Demonstration</h1> <hr>
+
+  <!-- Web Forms API -->
+  <h3>Web Forms API</h3>
+  <form id="formAPI">
+    <label for="formInput">Enter text:</label>
+    <input type="text" id="formInput">
+    <button type="button" onclick="submitFormAPI()">Submit</button>
+  </form>
+  <p id="formAPIResult"></p>
+  <hr>
+
+  <!-- Web History API -->
+  <h3>Web History API</h3>
+  <button onclick="goBack()">Go Back</button>
+  <button onclick="goForward()">Go Forward</button>
+  <button onclick="addHistory()">Add History Entry</button>
+  <hr>
+
+  <!-- Web Storage API -->
+  <h3>Web Storage API</h3>
+  <input type="text" id="storageInput" placeholder="Enter a value">
+  <button onclick="saveToLocalStorage()">Save to Local Storage</button>
+  <button onclick="loadFromLocalStorage()">Load from Local Storage</button>
+  <p id="storageResult"></p>
+  <hr>
+
+  <!-- Web Worker API -->
+  <h3>Web Worker API</h3>
+  <button onclick="startWorker()">Start Worker</button>
+  <button onclick="stopWorker()">Stop Worker</button>
+  <p id="workerStatus"></p>
+  <hr>
+
+  <!-- Web Fetch API -->
+  <h3>Web Fetch API</h3>
+  <button onclick="fetchData()">Fetch Data</button>
+  <pre id="fetchResult"></pre>
+  <hr>
+
+  <!-- Web Geolocation API -->
+  <h3>Web Geolocation API</h3>
+  <button onclick="getLocation()">Get Location</button>
+  <p id="geolocationResult"></p>
+  <hr>
+
+  <script>
+    // Web Forms API
+    function submitFormAPI() {
+      const input = document.getElementById("formInput").value;
+      document.getElementById("formAPIResult").innerHTML = `You entered: ${input}`;
+    }
+
+    // Web History API
+    function goBack() {
+      window.history.back();
+    }
+
+    function goForward() {
+      window.history.forward();
+    }
+
+    function addHistory() {
+      window.history.pushState({}, "New Page", "new-page.html");
+      alert("History entry added!");
+    }
+
+    // Web Storage API
+    function saveToLocalStorage() {
+      const value = document.getElementById("storageInput").value;
+      localStorage.setItem("myValue", value);
+      document.getElementById("storageResult").innerHTML = "Value saved to local storage!";
+    }
+
+    function loadFromLocalStorage() {
+      const value = localStorage.getItem("myValue");
+      document.getElementById("storageResult").innerHTML = value ? `Stored value: ${value}` : "No value found in local storage.";
+    }
+
+    // Web Worker API
+    let worker;
+    function startWorker() {
+      if (typeof(Worker) !== "undefined") {
+        if (typeof(worker) === "undefined") {
+          worker = new Worker("worker.js");
+          worker.onmessage = function(event) {
+            document.getElementById("workerStatus").innerHTML = `Worker says: ${event.data}`;
+          };
+        }
+      } else {
+        document.getElementById("workerStatus").innerHTML = "Sorry, your browser does not support Web Workers...";
+      }
+    }
+
+    function stopWorker() {
+      if (worker) {
+        worker.terminate();
+        worker = undefined;
+        document.getElementById("workerStatus").innerHTML = "Worker stopped.";
+      }
+    }
+
+    // Web Fetch API
+    function fetchData() {
+      fetch('https://api.github.com/users/html')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("fetchResult").innerHTML = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+          document.getElementById("fetchResult").innerHTML = `Error: ${error}`;
+        });
+    }
+
+    // Web Geolocation API
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          document.getElementById("geolocationResult").innerHTML = `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
+        }, function(error) {
+          document.getElementById("geolocationResult").innerHTML = `Error: ${error.message}`;
+        });
+      } else {
+        document.getElementById("geolocationResult").innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+  </script>
+
+  <!-- Web Worker Script -->
+  <script id="workerScript" type="text/worker">
+    onmessage = function(e) {
+      postMessage('Hello from the worker!'); 
+    };
+  </script>
+</body>
+</html>

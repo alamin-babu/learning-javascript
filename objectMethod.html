@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Object Property</title>
+</head>
+<body>
+    <h1>JavaScript Object Property Management</h1>
+    <hr>
+
+    <h4>Adding a New Property</h4>
+    <p id="addProperty"></p>
+    <hr>
+
+    <h4>Changing a Property Value</h4>
+    <p id="changeProperty"></p>
+    <hr>
+
+    
+
+    <script>
+        // Adding a New Property
+        const person = {
+            firstName: "John",
+            lastName: "Doe",
+            language: "EN",
+        };
+        Object.defineProperty(person, "year", { value: "2008" });
+        document.getElementById('addProperty').innerHTML = "Added property:" + person.year;
+
+        // Changing a Property Value
+        Object.defineProperty(person, "language", { value: "NO" });
+        document.getElementById('changeProperty').innerHTML = "changed property; Language: "+person.language;
+
+    </script>
+</body>
+</html>

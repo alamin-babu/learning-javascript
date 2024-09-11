@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Classes</title>
+</head>
+<body>
+    <h1>JavaScript Classes</h1>
+    <hr>
+
+
+    <h4>Class Method</h4>
+    <p id="classMethod"></p>
+    <hr>
+
+    <h4>Inheritance</h4>
+    <p id="inheritance"></p>
+    <hr>
+
+    <h4> Getters and Setters</h4>
+    <p id="gettersSetters"></p>
+    <hr>
+
+    <h4>Static Method</h4>
+    <p id="staticMethod"></p>
+    <hr>
+
+    <script>
+        // Class Definition and Constructor
+        // Classes are used to create objects with properties and methods. The constructor initializes object properties.
+        class Car {
+            constructor(name, year) {
+                this.name = name;
+                this.year = year;
+            }
+        }
+    
+        //  Class Method
+        // Class methods perform actions related to the class instance. They are defined inside the class.
+        class CarWithAge {
+            constructor(name, year) {
+                this.name = name;
+                this.year = year;
+            }
+            age() {
+                const date = new Date();
+                return date.getFullYear() - this.year;
+            }
+        }
+        const myCar = new CarWithAge("Ford", 2014);
+        document.getElementById('classMethod').innerHTML = 
+        "The age of 'myCar' is " + myCar.age() + " years.";
+
+        // Strict Mode
+        // Classes in JavaScript use strict mode, which enforces stricter parsing and error handling.
+        class StrictCar {
+            constructor(name, year) {
+                this.name = name;
+                this.year = year;
+            }
+            age() {
+                "use strict";  // Enforces strict mode within this method
+                const date = new Date();
+                return date.getFullYear() - this.year;
+            }
+        }
+
+        // Inheritance
+        // Inheritance allows a class to use properties and methods from another class.
+        class ElectricCar extends Car {
+            constructor(name, year, batteryLife) {
+                super(name, year);  // Call the parent class constructor
+                this.batteryLife = batteryLife;
+            }
+            displayInfo() {
+                return `${this.name} (${this.year}) with a battery life of ${this.batteryLife} hours.`;
+            }
+        }
+        const myElectricCar = new ElectricCar("Tesla", 2022, 12);
+        document.getElementById('inheritance').innerHTML = 
+        myElectricCar.displayInfo();
+
+        // Getters and Setters
+        // Getters and setters allow controlled access to object properties.
+        class CarWithGetterSetter {
+            constructor(name, year) {
+                this.name = name;
+                this.year = year;
+            }
+            get carAge() {
+                const date = new Date();
+                return date.getFullYear() - this.year;
+            }
+            set newYear(year) {
+                this.year = year;
+            }
+        }
+        const myCarWithGetterSetter = new CarWithGetterSetter("Ford", 2014);
+        myCarWithGetterSetter.newYear = 2016; // Using setter
+        document.getElementById('gettersSetters').innerHTML = 
+        "The updated age of 'myCarWithGetterSetter' is " + myCarWithGetterSetter.carAge + " years."; // Using getter
+
+        // Static Method
+        // Static methods are called on the class itself, not on instances of the class.
+        class Utility {
+            static sayHello(name) {
+                return `Hello, ${name}!`;
+            }
+        }
+        document.getElementById('staticMethod').innerHTML = 
+        Utility.sayHello("Alamin");  // Static method called on the class itself
+    </script>
+</body>
+</html>

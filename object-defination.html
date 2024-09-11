@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Creating JavaScript Objects</h1>
+    <hr>
+    <h4>creating object using: {}</h4>
+<p id="objectcurlyBraces"></p>
+<hr>
+<h4>creating object using: new object()</h4>
+
+<p id="objectNew"> </p>
+
+<hr>
+<h4>Disply object using Constructor Fucntion</h4>
+<p id="teacher-info"></p>
+<hr>
+
+    <script>
+        //object can be created by using- {} braces 
+        const person = {};
+
+        //object can be create using- new Object() 
+        const user = new Object();
+
+        // to add a poperty of an object we use 
+
+       person.name = "Alamin"; // for person object
+       user.name = "Asif"; //for user object
+
+       //displaying the object 
+       document.getElementById('objectcurlyBraces').innerHTML = person.name;
+       document.getElementById('objectNew').innerHTML = user.name;
+
+
+       //if we need to create many object with same type then 
+       //we can use object constructor function
+
+
+       //constructor function for object 
+       function Person(fullname,Age){
+        this.fullname = fullname;
+        this.Age = Age;
+       }
+
+       //creating object
+
+       const myTeacher = new Person("Delware Hossain",36); 
+       //we can't add a new property to an exsiting constructor**
+       //to add new poperty we have to add it in the constructor function**
+
+       //to solve this we can use prototype property
+
+       //displaying Teacher name with Age
+       document.getElementById('teacher-info').innerHTML=
+       "Name: "+myTeacher.fullname+"<br>"+"Age: "+ myTeacher.Age;
+
+
+
+       //
+
+
+
+
+
+    </script>
+</body>
+</html>

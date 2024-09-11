@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJAX Demonstration</title>
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>AJAX Demonstration</h1> <hr>
+
+ 
+  <h3>AJAX XMLHttpRequest</h3>
+  <button onclick="makeRequest()">Make AJAX Request</button>
+  <p id="xhrResult"></p>
+  <hr>
+
+  <h3>AJAX Request and Response</h3>
+  <button onclick="sendRequest()">Send Request</button>
+  <p id="responseResult"></p>
+  <hr>
+
+  <h3>AJAX XML File</h3>
+  <button onclick="loadXML()">Load XML</button>
+  <pre id="xmlResult"></pre>
+  <hr>
+
+
+
+ 
+
+  <script>
+
+    //AJAX XMLHttpRequest
+    function makeRequest() {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd', true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          document.getElementById('xhrResult').innerHTML = xhr.responseText;
+        } else {
+          document.getElementById('xhrResult').innerHTML = 'Error: ' + xhr.status;
+        }
+      };
+      xhr.send();
+    }
+
+    function sendRequest() {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd', true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          document.getElementById('responseResult').innerHTML = xhr.responseText;
+        } else {
+          document.getElementById('responseResult').innerHTML = 'Error: ' + xhr.status;
+        }
+      };
+      xhr.send();
+    }
+
+    function loadXML() {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', 'data.xml', true);
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          const xml = xhr.responseXML;
+          const title = xml.getElementsByTagName('title')[0].childNodes[0].nodeValue;
+          document.getElementById('xmlResult').innerHTML = 'Title: ' + title;
+        } else {
+          document.getElementById('xmlResult').innerHTML = 'Error: ' + xhr.status;
+        }
+      };
+      xhr.send();
+    }
+
+
+   
+  </script>
+</body>
+</html>

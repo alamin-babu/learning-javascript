@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Object Protection</title>
+</head>
+<body>
+    <h1>JavaScript Object Protection</h1>
+    <hr>
+
+    <h4>Object.preventExtensions()</h4>
+    <p id="preventExtensions"></p>
+    <hr>
+
+    <h4> Object.isExtensible()</h4>
+    <p id="isExtensible"></p>
+    <hr>
+
+    <h4>Object.seal()</h4>
+    <p id="seal"></p>
+    <hr>
+
+    <h4>Object.isSealed()</h4>
+    <p id="isSealed"></p>
+    <hr>
+
+    <h4> Object.freeze()</h4>
+    <p id="freeze"></p>
+    <hr>
+
+    <h4> Object.isFrozen()</h4>
+    <p id="isFrozen"></p>
+    <hr>
+
+    <script>
+        // Prevent new properties from being added
+        const person1 = { firstName: "John", lastName: "Doe" };
+        Object.preventExtensions(person1);
+        person1.nationality = "English"; // Will not be added
+        document.getElementById('preventExtensions').innerHTML = "Prevent Extensions: " + JSON.stringify(person1);
+
+        //  Check if an object is extensible
+        const isExtensiblePerson = Object.isExtensible(person1);
+        document.getElementById('isExtensible').innerHTML = "Is Extensible: " + isExtensiblePerson;
+
+        //  Prevent adding or deleting properties
+        const person2 = { firstName: "Jane", lastName: "Doe" };
+        Object.seal(person2);
+        delete personlastName; // Will not be deleted
+        document.getElementById('seal').innerHTML = "Seal: " + JSON.stringify(person2);
+
+        // Check if an object is sealed
+        const isSealedPerson = Object.isSealed(person2);
+        document.getElementById('isSealed').innerHTML = "Is Sealed: " + isSealedPerson;
+
+        // Prevent any changes to the object
+        const person3 = { firstName: "Alice", lastName: "Smith" };
+        Object.freeze(person3);
+        person3.age = 30; // Will not be added or modified
+        document.getElementById('freeze').innerHTML = "Freeze: " + JSON.stringify(person3);
+
+        // Check if an object is frozen
+        const isFrozenPerson = Object.isFrozen(person3);
+        document.getElementById('isFrozen').innerHTML = "Is Frozen: " + isFrozenPerson;
+    </script>
+</body>
+</html>

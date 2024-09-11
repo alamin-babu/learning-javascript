@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive DOM Demonstration</title>
+  <style>
+    .styled-text {
+      color: green;
+      font-size: 20px;
+    }
+
+    .animate {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: relative;
+      margin-top: 10px;
+    }
+
+    .moved {
+      animation: moveBox 2s forwards;
+    }
+
+    @keyframes moveBox {
+      from {left: 0;}
+      to {left: 400px;}
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Interactive DOM Manipulation</h1> <hr>
+
+  <p id="demo">Click the button to change me.</p>
+  <button onclick="changeText()">Change Text</button>
+  <button onclick="resetText()">Reset Text</button>
+  <hr>
+
+  
+
+  <!--Forms with Validation -->
+  <h3>Form Validation Example</h3>
+  <form id="userForm">
+    <label for="username">Enter username (at least 3 characters):</label> <br>
+    <input type="text" id="username" required> <br> <br>
+    <input type="submit" value="Submit" onclick="validateForm(event)">
+  </form>
+  <p id="formMessage" class="hidden"></p>
+  <hr>
+
+ 
+  <!-- CSS Manipulation -->
+  <h3>CSS Manipulation</h3>
+  <p id="styleText">This is a paragraph with dynamic styling. Click below to apply a style.</p>
+  <button onclick="toggleStyle()">Toggle Style</button>
+  <hr>
+
+
+  <!-- Animation -->
+  <h3>CSS Animation Example</h3>
+  <div id="box" class="animate"></div>
+  <button onclick="moveBox()">Move the Box</button> <hr>
+
+
+  <!--Event Listener  -->
+  <h3>Event Listener</h3>
+  <button id="clickButton">Click Me</button>
+  <p id="eventResult">Nothing has happened yet.</p>
+
+ <hr>
+
+  <!-- Navigation  -->
+  <h3>DOM Navigation</h3>
+  <ul id="navList">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+  <button onclick="navigateList()">Show First List Item</button>
+  <p id="navResult"></p>
+  <hr>
+
+
+  <!-- Node  -->
+  <h3>Node </h3>
+  <p id="nodeExample">This is a <strong>node</strong> inside a paragraph.</p>
+  <button onclick="showNodeName()">Log Node Name</button>
+<hr>
+
+  <!-- NodeList and Collection -->
+  <h3>NodeList </h3>
+  <ul id="itemList">
+    <li>Item A</li>
+    <li>Item B</li>
+    <li>Item C</li>
+  </ul>
+  <button onclick="logNodeList()">Log NodeList</button>
+
+
+  <!--Form Submit with DOM manipulation -->
+  <h3>Submit Form and Show Result</h3>
+  <form id="demoForm">
+    <label for="email">Enter Email:</label>
+    <input type="email" id="email" required>
+    <input type="submit" value="Submit" onclick="submitForm(event)">
+  </form>
+  <p id="formOutput"></p>
+
+  <script>
+    // Changes the text in the paragraph with id "demo"
+    function changeText() {
+      document.getElementById("demo").innerHTML = "Text has been changed!";
+    }
+
+    // Resets the text in the paragraph to the original message
+    function resetText() {
+      document.getElementById("demo").innerHTML = "This is a paragraph. Click the button to change me.";
+    }
+
+    // Validates the username input in the form
+    function validateForm(event) {
+      event.preventDefault();  // Stop the form from actually submitting
+      const username = document.getElementById("username").value;
+      const message = document.getElementById("formMessage");
+
+      // Simple check: if username is less than 3 characters, show error, otherwise success
+      if (username.length < 3) {
+        message.innerHTML = "Username must be at least 3 characters long.";
+        message.classList.remove("hidden"); 
+      } else {
+        message.innerHTML = "Form submitted successfully!";
+        message.classList.remove("hidden");  
+      }
+    }
+
+    // Toggles a CSS class on the paragraph to change its style
+    function toggleStyle() {
+      document.getElementById("styleText").classList.toggle("styled-text");  
+    }
+
+    // Event listener for the button; updates the paragraph when clicked
+    document.getElementById("clickButton").addEventListener("click", function() {
+      document.getElementById("eventResult").innerHTML = "Button clicked! 👆";  
+    });
+
+    // Moves the red box by adding a CSS class that triggers an animation
+    function moveBox() {
+      const box = document.getElementById('box');
+      box.classList.add('moved');  
+    }
+
+    // Grabs the first item from the list and displays its content
+    function navigateList() {
+      const list = document.getElementById("navList");  // Get the list
+      document.getElementById("navResult").innerHTML = list.firstElementChild.innerHTML;  
+    }
+
+    // Logs the node name of the <strong> element in the console
+    function showNodeName() {
+      const node = document.getElementById("nodeExample");
+      console.log(node.childNodes[1].nodeName); 
+      alert("Node name: " + node.childNodes[1].nodeName);  
+    }
+
+    // Logs the number of list items on the page
+    function logNodeList() {
+      const nodeList = document.querySelectorAll('li');  // Grab all <li> elements
+      alert("Total Items: " + nodeList.length); 
+    }
+
+    // Handles form submission and shows the submitted email
+    function submitForm(event) {
+      event.preventDefault();  // Keep the form from actually submitting
+      const email = document.getElementById("email").value;
+      document.getElementById("formOutput").innerHTML = "Submitted Email: " + email;  
+    }
+</script>
+
+
+</body>
+</html>

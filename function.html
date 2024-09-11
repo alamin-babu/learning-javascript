@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions</title>
+</head>
+<body>
+    <h1>JavaScript Functions</h1>
+    <hr>
+
+    <h4>1. Function Definition and Invocation</h4>
+    <p id="functionDefinition"></p>
+    <hr>
+
+    <h4>2. Parameters and Invocation</h4>
+    <p id="parameters"></p>
+    <hr>
+
+    <h4>3. Function Call Method</h4>
+    <p id="call"></p>
+    <hr>
+
+    <h4>4. Function Apply Method</h4>
+    <p id="apply"></p>
+    <hr>
+
+    <h4>5. Function Bind Method</h4>
+    <p id="bind"></p>
+    <hr>
+
+    <h4>6. Closures</h4>
+    <p id="closures"></p>
+    <hr>
+
+    <script>
+        // Function Definition and Invocation
+
+        // Functions can be defined to perform specific tasks and are invoked with arguments to get results.
+        function greet(name) {
+            return "Hello, " + name + "!";
+        }
+        document.getElementById('functionDefinition').innerHTML = greet("Alamin");
+
+
+        // Parameters and Invocation
+        // Functions can accept parameters to perform operations with those values and return results
+        function add(a, b) {
+            return a + b;
+        }
+        document.getElementById('parameters').innerHTML = "Sum: " + add(5, 3);
+
+
+        // Function Call Method
+        // The `call` method allows invoking functions with a specified `this` value and individual arguments
+        function multiply(c, d) {
+            return c * d;
+        }
+        function calculate() {
+            return multiply.call(null, 4, 6);
+        }
+        document.getElementById('call').innerHTML = "Product using call: " + calculate();
+
+        // Function Apply Method
+        // The `apply` method works like `call` but accepts arguments as an array
+        function divide(e, f) {
+            return e / f;
+        }
+
+        function calculateApply() {
+            return divide.apply(null, [20, 4]);
+        }
+
+        document.getElementById('apply').innerHTML = "Division using apply: " + calculateApply();
+
+
+        // Function Bind Method
+        // The `bind` method creates a new function with a preset `this` value and initial arguments.
+        function subtract(g, h) {
+            return g - h;
+        }
+        const subtractFive = subtract.bind(null, 10);
+        document.getElementById('bind').innerHTML = "Subtraction using bind: " + subtractFive(3);
+
+        // Closures
+        // Closures allow functions to retain access to variables from their lexical scope even after the outer function has finished.
+        function makeCounter() {
+            let count = 0;
+            return function() {
+                count++;
+                return count;
+            };
+        }
+        const counter = makeCounter();
+        document.getElementById('closures').innerHTML = "Counter: " + counter() + ", " + counter();
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic</title>
+</head>
+<body>
+  <h1>JavaScript Examples</h1>
+
+  <h3>For Loop</h3>
+  <button onclick="forLoopExample()">Run For Loop</button>
+  <pre id="forLoopResult"></pre>
+  <hr>
+
+  <h3>While Loop</h3>
+  <button onclick="whileLoopExample()">Run While Loop</button>
+  <pre id="whileLoopResult"></pre>
+  <hr>
+
+  <h3>Do-While Loop</h3>
+  <button onclick="doWhileLoopExample()">Run Do-While Loop</button>
+  <pre id="doWhileLoopResult"></pre>
+  <hr>
+
+  <h3>For...in Loop</h3>
+  <button onclick="forInLoopExample()">Run For...in Loop</button>
+  <pre id="forInLoopResult"></pre>
+  <hr>
+
+  <h3>For...of Loop</h3>
+  <button onclick="forOfLoopExample()">Run For...of Loop</button>
+  <pre id="forOfLoopResult"></pre>
+  <hr>
+
+  <h3>Arrays</h3>
+  <button onclick="arrayExample()">Run Array Example</button>
+  <pre id="arrayResult"></pre>
+  <hr>
+
+  <h3>Conditions (If-Else)</h3>
+  <button onclick="conditionExample()">Run Condition Example</button>
+  <pre id="conditionResult"></pre>
+  <hr>
+
+
+
+  <script>
+    // For Loop: Repeats the block of code a fixed number of times
+    function forLoopExample() {
+      let result = "For Loop:\n";
+      for (let i = 0; i < 5; i++) {
+        result += "Iteration " + i + "\n";
+      }
+      document.getElementById('forLoopResult').innerText = result;
+    }
+
+    // While Loop: Repeats the block of code as long as the condition is true
+    function whileLoopExample() {
+      let result = "While Loop:\n";
+      let count = 0;
+      while (count < 6) {
+        result += "Count: " + count + "\n";
+        count++;
+      }
+      document.getElementById('whileLoopResult').innerText = result;
+    }
+
+    // Do-While Loop: Similar to while, but always runs the block at least once
+    function doWhileLoopExample() {
+      let result = "Do-While Loop:\n";
+      let count = 0;
+      do {
+        result += "Count: " + count + "\n";
+        count++;
+      } while (count < 4);
+      document.getElementById('doWhileLoopResult').innerText = result;
+    }
+
+    // For...in Loop: Loops over object properties (used with objects)
+    function forInLoopExample() {
+      let result = "For...in Loop:\n";
+      const person = { name: "John", age: 30 };
+      for (let key in person) {
+        result += key + ": " + person[key] + "\n";
+      }
+      document.getElementById('forInLoopResult').innerText = result;
+    }
+
+    // For...of Loop: Loops over the values of an iterable (like an array)
+    function forOfLoopExample() {
+      let result = "For...of Loop:\n";
+      const arr = [10, 20, 30];
+      for (let value of arr) {
+        result += value + "\n";
+      }
+      document.getElementById('forOfLoopResult').innerText = result;
+    }
+
+    // Arrays: Demonstrates basic array and array methods
+    function arrayExample() {
+      let result = "Array :\n";
+      const arr = [1, 2, 3];
+      result += "Original Array: " + arr.join(", ") + "\n";
+      arr.push(4); // Add element
+      result += "After Push (4): " + arr.join(", ") + "\n";
+      arr.pop(); // Remove last element
+      result += "After Pop: " + arr.join(", ") + "\n";
+      document.getElementById('arrayResult').innerText = result;
+    }
+
+    // If-Else Condition: Executes different blocks based on the condition
+    function conditionExample() {
+      let result = "Condition :\n";
+      const num = 7;
+      if (num > 5) {
+        result += num + " is greater than 5\n";
+      } else {
+        result += num + " is less than or equal to 5\n";
+      }
+      document.getElementById('conditionResult').innerText = result;
+    }
+
+    
+  </script>
+</body>
+</html>
